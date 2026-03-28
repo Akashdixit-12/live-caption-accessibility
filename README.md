@@ -48,3 +48,27 @@ python sender/sender.py
 Make sure both devices are connected to the same WiFi network.
 
 ## Project Structure
+live-caption-deaf-accessibility/
+│
+├── README.md
+├── requirements.txt
+├── main_app/
+├── sender/
+├── receiver/
+├── screenshots/
+├── reports/
+└── data/
+
+## Output Screenshots
+
+
+## Future Improvements
+- Use Whisper AI for better speech recognition accuracy
+- Multi-language caption support
+- Mobile application version
+- Cloud database storage
+- Speaker identification
+
+## Author
+Akash Dixit
+B.Tech Computer Science
