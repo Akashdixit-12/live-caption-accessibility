@@ -5,9 +5,9 @@ Dusre ka bola hua → Yahan bade captions mein dikhega
 Same WiFi pe hona zaroori hai
 """
 
-import socket
-import threading
-import tkinter as tk
+
+
+
 from datetime import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -58,101 +58,6 @@ class ReceiverApp:
             return ip
         except:
             return "IP nahi mila"
-
-    def _build_ui(self):
-        self.root = tk.Tk()
-        self.root.title("👁 RECEIVER — Deaf Person ka App")
-        self.root.geometry("900x500")
-        self.root.configure(bg='#000000')
-        self.root.attributes('-topmost', True)
-
-        # Title bar
-        top = tk.Frame(self.root, bg='#111111', pady=8)
-        top.pack(fill='x')
-
-        tk.Label(top, text="👁 LIVE CAPTIONS",
-                 bg='#111111', fg='#00e5ff',
-                 font=('Helvetica', 13, 'bold')).pack(side='left', padx=14)
-
-        self.status = tk.Label(top,
-                                text="● Sender ka wait kar raha hun...",
-                                bg='#111111', fg='#ffd740',
-                                font=('Helvetica', 11))
-        self.status.pack(side='left', padx=10)
-
-        tk.Button(top, text="📊 Report",
-                  bg='#1a1a2e', fg='white',
-                  font=('Helvetica', 10), relief='flat',
-                  padx=10, command=self._show_report).pack(side='right', padx=6)
-
-        tk.Button(top, text="💾 Save",
-                  bg='#1a1a2e', fg='white',
-                  font=('Helvetica', 10), relief='flat',
-                  padx=10, command=self._save).pack(side='right', padx=6)
-
-        tk.Button(top, text="🗑 Clear",
-                  bg='#1a1a2e', fg='white',
-                  font=('Helvetica', 10), relief='flat',
-                  padx=10, command=self._clear).pack(side='right', padx=6)
-
-        # IP display — sender ko batao
-        ip_frame = tk.Frame(self.root, bg='#0a0a0a', pady=10)
-        ip_frame.pack(fill='x')
-
-        tk.Label(ip_frame,
-                 text="📡 Tera IP Address (Sender ko yeh batao):",
-                 bg='#0a0a0a', fg='#888888',
-                 font=('Helvetica', 10)).pack(side='left', padx=14)
-
-        tk.Label(ip_frame,
-                 text=self.my_ip,
-                 bg='#0a0a0a', fg='#00ff88',
-                 font=('Helvetica', 16, 'bold')).pack(side='left', padx=6)
-
-        # Importance indicator
-        self.importance_label = tk.Label(
-            self.root, text="",
-            bg='#000000', fg='#ffd740',
-            font=('Helvetica', 13, 'bold')
-        )
-        self.importance_label.pack(anchor='w', padx=20, pady=(16, 0))
-
-        # Main caption — bada aur clear
-        self.caption_var = tk.StringVar(value="Yahan captions dikhenge...")
-        self.caption_label = tk.Label(
-            self.root,
-            textvariable=self.caption_var,
-            bg='#000000', fg='white',
-            font=('Helvetica', 36, 'bold'),
-            wraplength=860,
-            justify='left'
-        )
-        self.caption_label.pack(anchor='w', padx=20, pady=(8, 0))
-
-        # Previous caption
-        tk.Label(self.root, text="Pehle kaha:",
-                 bg='#000000', fg='#333333',
-                 font=('Helvetica', 10)).pack(anchor='w', padx=20, pady=(20, 0))
-
-        self.prev_var = tk.StringVar(value="")
-        tk.Label(self.root,
-                 textvariable=self.prev_var,
-                 bg='#000000', fg='#444444',
-                 font=('Helvetica', 18),
-                 wraplength=860, justify='left').pack(anchor='w', padx=20)
-
-        # Stats bar
-        self.stats_var = tk.StringVar(value="")
-        tk.Label(self.root,
-                 textvariable=self.stats_var,
-                 bg='#111111', fg='#555555',
-                 font=('Helvetica', 10),
-                 pady=6).pack(fill='x', padx=14, side='bottom')
-
-    def _start_server(self):
-        """Background mein server start karo — sender ka wait karo"""
-        threading.Thread(target=self._server_loop, daemon=True).start()
-
     def _server_loop(self):
         try:
             self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
