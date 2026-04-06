@@ -21,8 +21,6 @@ The captions can also be transmitted to another device over a network for deaf u
 ## Technologies Used
 - Python
 - SpeechRecognition
-- Scikit-learn
-- Tkinter (GUI)
 - Socket Programming (TCP)(Basic understanding)
 - Pandas
 - Matplotlib
